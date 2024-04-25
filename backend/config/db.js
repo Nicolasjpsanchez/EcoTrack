@@ -1,8 +1,13 @@
 import mongoose from 'mongoose';
 
+// It's better to build the URI inside the connectDB function to ensure the environment variables are loaded when this function is called.
 const connectDB = async () => {
+    // Construct the MongoDB URI
+    const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+    console.log(dbURI);  // Debugging: Output the MongoDB connection string to check correctness
+
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
+        await mongoose.connect(dbURI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
