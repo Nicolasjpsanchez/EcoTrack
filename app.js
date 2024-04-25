@@ -1,6 +1,12 @@
 // app.js for Node.js
 require('dotenv').config({ path: '.env' });
 
+console.log('DB_USER:', process.env.DB_USER);
+console.log('DB_PASS:', process.env.DB_PASS);
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('DB_NAME:', process.env.DB_NAME);
+
+
 // After loading the environment variables, you can now require other modules
 const express = require('express');
 const mongoose = require('mongoose');
