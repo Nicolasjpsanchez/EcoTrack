@@ -21,9 +21,3 @@ app.use(express.json());
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-require('dotenv').config(); // This should be the first line in your main file or database config file
-
-const mongoose = require('mongoose');
-const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-
