@@ -31,3 +31,19 @@ process.on('SIGINT', async () => {
         process.exit(1);
     }
 });
+
+// Closing the MongoDB connection on process termination
+const closeDatabaseConnection = async (signal) => {
+    try {
+        await mongoose.connection.close();
+        console.log(`MongoDB connection closed due to app ${signal}`);
+        process.exit(0);
+    } catch (error) {
+        console.error('Error closing MongoDB connection:', error);
+        process.exit(1);
+    }
+};
+
+process.on('SIGINT', () => closeDatabaseConnection('SIGINT'));
+process.on('SIGTERM', () => closeDatabaseConnection('SIGTERM'));
+
