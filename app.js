@@ -1,5 +1,5 @@
 // app.js for Node.js
-require('dotenv').config({ path: 'EcoTrack/app.js' });
+require('dotenv').config({ path: '.env' });
 
 // After loading the environment variables, you can now require other modules
 const express = require('express');
