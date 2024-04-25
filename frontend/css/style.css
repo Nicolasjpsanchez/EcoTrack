@@ -1,0 +1,121 @@
+/* Global reset and box sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body and global styling */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f8f9fa;
+  background-image: url('../images/cool-background.png');
+  background-size:cover;
+  background-position: center;
+  padding: 40px;
+  transition: background-color 0.3s ease;
+}
+
+/* Site title styling */
+#site-title h1 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 36px; /* Larger to distinguish from other header elements */
+  font-weight: bold;
+  padding: 20px 0;
+  margin-bottom: 20px; /* Ensure space between title and content */
+  background: transparent; /* Clear background */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Header styling */
+header {
+  background-color: transparent; /* Make header background clear */
+  color: #ffffff;
+  padding: 15px 0;
+  text-align: center;
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Navigation styling */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+}
+
+li {
+  margin: 0 20px;
+  position: relative;
+  border-radius: 5px; /* Slightly rounded edges for navigation items */
+}
+
+li:hover::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: #007bff;
+  width: 100%;
+  position: absolute;
+  bottom: -5px;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #007bff;
+}
+
+/* Main content adjustments */
+main {
+  padding: 30px;
+  padding-bottom: 60px; /* Increased padding at the bottom to push content up from the footer */
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border-radius: 10px; /* Rounded corners for main content area */
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+  background: transparent; /* Clear background */
+  color: #ffffff;
+  z-index: 1000;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: none;  /* Removed shadow */
+}
+
+footer * {
+  color: inherit; /* Ensures all elements inside inherit the white color */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  nav ul li {
+    margin: 0 10px;
+  }
+
+  main {
+    padding: 15px;
+  }
+}

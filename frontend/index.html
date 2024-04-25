@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoTrack helps you track and reduce your carbon footprint. Join us in our mission to make a sustainable future accessible to everyone.">
+    <title>EcoTrack - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/trees.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div id="site-title">
+            <h1>EcoTrack</h1>
+        </div>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="./html/features.html" class="nav-link">Features</a></li>
+                <li><a href="./html/about.html" class="nav-link">About</a></li>
+                <li><a href="./html/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="intro" aria-labelledby="intro-heading">
+            <h2 id="intro-heading">Welcome to EcoTrack</h2>
+            <br>
+            <p>Join EcoTrack and take a step towards a sustainable future by tracking and reducing your carbon footprint. Use our interactive tools to measure and understand your environmental impact.</p>
+            <br>
+            <button id="start-tracking" aria-label="Start Tracking">Start Tracking</button>
+            <br>
+        </section>
+
+        <section id="features" aria-labelledby="features-heading">
+            <br>
+            <h2 id="features-heading">Features</h2>
+            <br>
+            <ul>
+                <li>Real-time Carbon Footprint Calculation</li>
+                <li>Personalized Sustainability Tips</li>
+                <li>Progress Tracking Over Time</li>
+            </ul>
+        </section>
+
+        <section id="about" aria-labelledby="about-heading">
+            <br>
+            <h2 id="about-heading">About EcoTrack</h2>
+            <br>
+            <p>EcoTrack was founded with the mission to empower individuals to make informed environmental choices. Our tool is designed to provide insights into how everyday actions impact the planet.</p>
+            <br>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact Us</h2>
+            <br>
+            <p>Have questions or suggestions? Reach out to us via email at <a href="mailto:support@ecotrack.com">support@ecotrack.com</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> EcoTrack. All rights reserved.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
