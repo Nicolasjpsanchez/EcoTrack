@@ -1,22 +1,22 @@
 // app.js for Node.js
-require('dotenv').config();
+require('dotenv').config({ path: '.env' });
+
+// After loading the environment variables, you can now require other modules
 const express = require('express');
 const mongoose = require('mongoose');
 
-// MongoDB connection
+// Other configurations and setup
+const app = express();
 const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected successfully'))
   .catch(err => console.error('Failed to connect to MongoDB:', err));
 
-// Initialize Express application
-const app = express();
-
-// Middleware setup
-app.use(express.json());
-// Example of adding a route file (make sure to create this if it doesn't exist)
-// const routeFile = require('./routes/api'); // adjust path and filename as necessary
-// app.use('/api/routes', routeFile);
+// Define routes, middleware, etc.
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;
