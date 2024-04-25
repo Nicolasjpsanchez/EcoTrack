@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-// It's better to build the URI inside the connectDB function to ensure the environment variables are loaded when this function is called.
 const connectDB = async () => {
     // Construct the MongoDB URI
     const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
@@ -32,7 +31,7 @@ process.on('SIGINT', async () => {
     }
 });
 
-// Closing the MongoDB connection on process termination
+// Additional signal handling for graceful shutdown
 const closeDatabaseConnection = async (signal) => {
     try {
         await mongoose.connection.close();
@@ -44,6 +43,4 @@ const closeDatabaseConnection = async (signal) => {
     }
 };
 
-process.on('SIGINT', () => closeDatabaseConnection('SIGINT'));
 process.on('SIGTERM', () => closeDatabaseConnection('SIGTERM'));
-
