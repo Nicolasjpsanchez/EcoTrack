@@ -1,39 +1,20 @@
-// db.js
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-// Load environment variables from .env file
-dotenv.config();
 
 const connectDB = async () => {
-    // Construct the MongoDB URI
     const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-    console.log('Attempting to connect to MongoDB...');  // Debugging statement
+    console.log('Attempting to connect to MongoDB...');
+
+    const options = {
+        useNewUrlParser: true, // Not necessary for driver version 4.0 and above
+        useUnifiedTopology: true // Not necessary for driver version 4.0 and above
+    };
 
     try {
-        await mongoose.connect(dbURI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+        await mongoose.connect(dbURI, options);
         console.log('MongoDB connected successfully');
     } catch (error) {
         console.error('Failed to connect to MongoDB:', error);
-        process.exit(1);  // Exit if database connection fails
+        // Consider a more graceful approach to shutting down, or a retry mechanism
+        process.exit(1);
     }
 };
-
-export default connectDB;
-
-// Proper handling of closing the MongoDB connection when the Node process ends
-process.on('SIGINT', async () => {
-    await mongoose.connection.close();
-    console.log('MongoDB connection closed due to app termination');
-    process.exit(0);
-});
-
-// Additional signal handling for graceful shutdown
-process.on('SIGTERM', async () => {
-    await mongoose.connection.close();
-    console.log('MongoDB connection closed due to app termination (SIGTERM)');
-    process.exit(0);
-});
