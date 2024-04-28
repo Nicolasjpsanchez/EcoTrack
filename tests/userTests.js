@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import request from 'supertest';
-import app from '../backend/server.js';
+import app from '../server.js';
 
 describe('User API Tests', function () {  // Changed to a function to use this.timeout()
     // Increase timeout for this test to handle database operations
