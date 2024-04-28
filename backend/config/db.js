@@ -1,9 +1,14 @@
+// db.js
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const connectDB = async () => {
     // Construct the MongoDB URI
     const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-    console.log(dbURI);  // Debugging: Output the MongoDB connection string to check correctness
+    console.log('Attempting to connect to MongoDB...');  // Debugging statement
 
     try {
         await mongoose.connect(dbURI, {
@@ -13,7 +18,7 @@ const connectDB = async () => {
         console.log('MongoDB connected successfully');
     } catch (error) {
         console.error('Failed to connect to MongoDB:', error);
-        process.exit(1);  // Ensuring the application does not run if there is no database connection
+        process.exit(1);  // Exit if database connection fails
     }
 };
 
@@ -21,26 +26,14 @@ export default connectDB;
 
 // Proper handling of closing the MongoDB connection when the Node process ends
 process.on('SIGINT', async () => {
-    try {
-        await mongoose.connection.close();
-        console.log('MongoDB connection closed due to app termination');
-        process.exit(0);
-    } catch (error) {
-        console.error('Error closing MongoDB connection:', error);
-        process.exit(1);
-    }
+    await mongoose.connection.close();
+    console.log('MongoDB connection closed due to app termination');
+    process.exit(0);
 });
 
 // Additional signal handling for graceful shutdown
-const closeDatabaseConnection = async (signal) => {
-    try {
-        await mongoose.connection.close();
-        console.log(`MongoDB connection closed due to app ${signal}`);
-        process.exit(0);
-    } catch (error) {
-        console.error('Error closing MongoDB connection:', error);
-        process.exit(1);
-    }
-};
-
-process.on('SIGTERM', () => closeDatabaseConnection('SIGTERM'));
+process.on('SIGTERM', async () => {
+    await mongoose.connection.close();
+    console.log('MongoDB connection closed due to app termination (SIGTERM)');
+    process.exit(0);
+});
