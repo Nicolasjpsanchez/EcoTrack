@@ -1,5 +1,5 @@
 import express from 'express';
-import connectDB from '/backend/config/db.js';
+import { connectDB } from './backend/config/db.js';  // Make sure to export connectDB in db.js
 
 const app = express();
 
