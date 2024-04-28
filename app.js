@@ -1,3 +1,8 @@
+app.get('/', (req, res) => {
+  res.send('Welcome to EcoTrack.com');
+});
+
+
 // app.js for Node.js
 require('dotenv').config({ path: '.env' });
 
