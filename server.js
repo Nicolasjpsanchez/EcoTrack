@@ -8,9 +8,14 @@ const app = express();
 // Middleware for parsing JSON bodies
 app.use(express.json());
 
+// Define a route for the root URL
+app.get('/', (req, res) => {
+    res.send('Welcome to the Goldfish App!');
+});
+
 // Additional middleware and routes setup here
 
-// Start the server function
+// Function to start the server
 const startServer = async () => {
     try {
         await connectDB(); // Connect to the database
@@ -22,6 +27,7 @@ const startServer = async () => {
     }
 };
 
+// Call the function to start the server
 startServer();
 
 export default app;
